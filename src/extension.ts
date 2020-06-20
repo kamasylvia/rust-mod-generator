@@ -35,7 +35,7 @@ function createModule(uri: vscode.Uri) {
 				return;
 			}
 
-			// Get the project root directory.
+			// Check if a Cargo project.
 			let projectRootPath;
 			findParentDir(uri.path, 'Cargo.toml', function (err: any, dir: any) {
 				projectRootPath = dir;
@@ -45,7 +45,12 @@ function createModule(uri: vscode.Uri) {
 				return;
 			}
 
-			// Check if the file or directory exists.
+			if (!uri.path.endsWith(".rs")) {
+				vscode.window.showErrorMessage("Please right click a .rs file.");
+				return;
+			}
+
+			// Check if the mod exists.
 			let uriDir = path.dirname(uri.path);
 			let modUri = vscode.Uri.joinPath(vscode.Uri.file(uriDir), modName);
 			fs.exists(modUri.path, function (exists) {
