@@ -4,7 +4,7 @@ import * as vscode from 'vscode';
 import * as path from 'path';
 import * as fs from 'fs';
 import * as os from 'os';
-const parentfinder = require('find-parent-dir');
+const findParentDir = require('find-parent-dir');
 const findupglob = require('find-up-glob');
 
 // this method is called when your extension is activated
@@ -29,38 +29,37 @@ export function activate(context: vscode.ExtensionContext) {
 }
 
 function createModule(uri: vscode.Uri) {
-	let inComingPath = uri ? uri : vscode.workspace.workspaceFile;
-
 	vscode.window.showInputBox({ ignoreFocusOut: true, prompt: 'Please enter the mod name', value: "<mod_dir> or <mod>.rs" })
 		.then((modName) => {
-			if (!modName) {
-				return;
-			}
-			if (!inComingPath) {
-				vscode.window.showErrorMessage("Unable to find a workspace.");
+			if (!modName || !uri) {
 				return;
 			}
 
 			// Get the project root directory.
-			let projectRootPath: string = parentfinder.sync(inComingPath.path, 'Cargo.toml');
+			let projectRootPath;
+			findParentDir(uri.path, 'Cargo.toml', function (err: any, dir: any) {
+				projectRootPath = dir;
+			});
 			if (!projectRootPath) {
 				vscode.window.showErrorMessage("Unable to find a Cargo.toml.");
 				return;
 			}
 
 			// Check if the file or directory exists.
-			let modUri = vscode.Uri.joinPath(inComingPath, modName);
-			if (fs.existsSync(modUri.path)) {
-				vscode.window.showErrorMessage("Mod ${modName} already exists");
-				return;
-			}
+			let uriDir = path.dirname(uri.path);
+			let modUri = vscode.Uri.joinPath(vscode.Uri.file(uriDir), modName);
+			fs.exists(modUri.path, function (exists) {
+				if (exists) {
+					vscode.window.showErrorMessage("Mod ${modName} already exists");
+					return;
+				}
+			});
 
 			if (modUri.path.endsWith(".rs")) {
 
 			} else {
 
 			}
-
 		});
 }
 
