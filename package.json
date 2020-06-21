@@ -2,12 +2,15 @@
     "name": "rust-mod-generator",
     "displayName": "Rust Mod Generator",
     "description": "Create a mod quickly.",
+    "author": "Zhang Yue",
+    "publisher": "ZhangYue",
+    "license": "See LICENSE IN LICENSE.txt",
     "version": "0.0.1",
     "engines": {
         "vscode": "^1.46.0"
     },
     "categories": [
-        "Other"
+        "Programming Languages",
     ],
     "activationEvents": [
         "onCommand:rust-mod-generator.showModuleNameDialog"
