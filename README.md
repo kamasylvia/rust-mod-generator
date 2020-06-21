@@ -23,15 +23,15 @@ Welcome to post any issue.
 
 ### 0.0.1
 
-Initial release of Rust Mod Generator.
+- Initial release of Rust Mod Generator.
 
 ### 0.0.2 (Current version)
 - Add a logo.
 
 ### 0.0.3 (Next version)
+- Add an extension setting `rust-mod-generator.autoJump`.
 
-Allow to select the access modifier.
-
-### 0.0.3 (Coming soon)
-
-Add `<modifier> mod <mod_name>;` automatically to the head of the resource file.
+### 0.0.4 (Coming soon)
+- Allow to select the access modifier.
+- Add `<modifier> mod <mod_name>;` automatically to the head of the resource file.
+- Add a extension setting `rust-mod-generator.addModDeclaration`.
