@@ -1,19 +1,43 @@
 // The module 'vscode' contains the VS Code extensibility API
 // Import the module and reference it with the alias vscode in your code below
 import * as vscode from 'vscode';
-import { showDialog } from './new/showDialog';
+import path = require('path');
+import { getModName } from "./new/createModule";
+import { autoDeclare } from './declare/autoDeclare';
 
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
 export function activate(context: vscode.ExtensionContext) {
+	vscode.commands.registerCommand('rust-mod-generator.showModuleNameDialog',
+		async (originUri: vscode.Uri) => {
+			let uri = originUri ? originUri : vscode.window.activeTextEditor?.document.uri;
+			if (!uri) {
+				const err = "Please focus on a .rs file .. or just right-click on a .rs file and use the context menu!";
+				vscode.window.showErrorMessage(err);
+				throw new Error(err);
+			}
 
-	// Use the console to output diagnostic information (console.log) and errors (console.error)
-	// This line of code will only be executed once when your extension is activated
+			const rootPath = path.dirname(uri.fsPath);
+			const rootUri = vscode.Uri.file(rootPath);
 
-	// The command has been defined in the package.json file
-	// Now provide the implementation of the command with registerCommand
-	// The commandId parameter must match the command field in package.json
-	vscode.commands.registerCommand('rust-mod-generator.showModuleNameDialog', showDialog);
+			const modName = await getModName(uri, rootUri);
+			if (!modName) {
+				return;
+			}
+
+			let modifier = "";
+
+			const allowSetModifier = vscode.workspace.getConfiguration("rust-mod-generator").get("selectAccessModifier");
+			if (allowSetModifier) {
+				modifier = await vscode.window.showQuickPick(["private(default)", "pub"], { placeHolder: "pub" }).
+					then(modifier => modifier === "pub" ? "pub " : "");
+			}
+
+			const allowAutooDeclare = vscode.workspace.getConfiguration("rust-mod-generator").get("addModDeclaration");
+			if (allowAutooDeclare) {
+				await autoDeclare(uri, modName, modifier);
+			}
+		});
 }
 
 

@@ -25,7 +25,17 @@
                 "rust-mod-generator.autoFocus": {
                     "type": "boolean",
                     "default": true,
-                    "description": "Enable/disable auto focus on the new created module."
+                    "description": "Enable to auto focusing on the new created module."
+                },
+                "rust-mod-generator.selectAccessModifier": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Enable to set the access modifier when creating a new module."
+                },
+                "rust-mod-generator.addModDeclaration": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Enable to auto add '<modifier> mod <mod_name>;' to the head of the resource file."
                 }
             }
         },
