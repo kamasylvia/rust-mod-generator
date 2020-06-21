@@ -10,7 +10,7 @@
         "vscode": "^1.46.0"
     },
     "categories": [
-        "Programming Languages",
+        "Programming Languages"
     ],
     "activationEvents": [
         "onCommand:rust-mod-generator.showModuleNameDialog"
