@@ -7,7 +7,7 @@
     "license": "See LICENSE IN LICENSE.txt",
     "repository": "https://github.com/ZhangYue-vhyt/rust-mod-generator",
     "icon": "images/logo256.png",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "engines": {
         "vscode": "^1.46.0"
     },
@@ -22,10 +22,10 @@
         "configuration": {
             "title": "Rust Mod Generator",
             "properties": {
-                "rust-mod-generator.autoJump": {
+                "rust-mod-generator.autoFocus": {
                     "type": "boolean",
                     "default": true,
-                    "description": "Enable/disable auto jump to the new created module."
+                    "description": "Enable/disable auto focus on the new created module."
                 }
             }
         },

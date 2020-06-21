@@ -28,8 +28,8 @@ export async function createModule(uri: vscode.Uri, isDir = false) {
 
 
     // Focus on the new created file.
-    let autoJump = vscode.workspace.getConfiguration("rust-mod-generator").get("autoJump");
-    if (autoJump) {
+    let autoFocus = vscode.workspace.getConfiguration("rust-mod-generator").get("autoFocus");
+    if (autoFocus) {
         await vscode.workspace.openTextDocument(uri).then(doc => vscode.window.showTextDocument(doc));
     }
 }
