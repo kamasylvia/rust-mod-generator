@@ -1,35 +1,32 @@
-import * as vscode from 'vscode';
+import * as vscode from "vscode";
 import * as fs from "fs";
-import * as path from "path";
-import { createSingleModuleFile } from "./createSingleModuleFile";
-import { createModuleDirectory } from "./createModuleDirectory";
 
-export async function showModuleNameDialog(originUri: vscode.Uri) {
-    let uri = originUri ? originUri : vscode.window.activeTextEditor?.document.uri;
-    if (!uri) {
-        vscode.window.showErrorMessage("Please focus on a .rs file .. or just right-click on a .rs file and use the context menu!");
-        return;
+export async function createModule(uri: vscode.Uri, isDir = false) {
+    if (isDir) {
+        // Create the directory.
+        fs.mkdir(uri.fsPath, (err) => {
+            if (err) {
+                vscode.window.showErrorMessage(err.message);
+            }
+        });
+        uri = vscode.Uri.joinPath(uri, "mod.rs");
     }
 
-    let rootPath = path.dirname(uri.fsPath);
-    let rootUri = vscode.Uri.file(rootPath);
-
-    vscode.window.showInputBox({ placeHolder: "<directory name> or <file name>.rs", prompt: "Enter the mod name. If the input ends with .rs, a single .rs file will be created, else a new subdirectory with mod.rs will be created.", value: "my_mod" }).then(async modName => {
-        if (!modName || !uri) {
-            return;
+    // Create the file.
+    fs.open(uri.fsPath, "w", (err, fd) => {
+        if (err) {
+            vscode.window.showErrorMessage(err.message);
+            throw new Error(err.message);
         }
-
-        let modUri = vscode.Uri.joinPath(rootUri, modName);
-
-        if (fs.existsSync(modUri.fsPath)) {
-            vscode.window.showErrorMessage("The mod " + modName + " already exists.");
-            return;
-        }
-
-        if (modName.endsWith(".rs")) {
-            await createSingleModuleFile(modUri);
-        } else {
-            await createModuleDirectory(modUri);
-        }
+        fs.close(fd, (err) => {
+            if (err) {
+                vscode.window.showErrorMessage(err.message);
+                throw new Error(err.message);
+            }
+        });
     });
+
+
+    // Focus on the new created file.
+    await vscode.workspace.openTextDocument(uri).then(doc => vscode.window.showTextDocument(doc));
 }
