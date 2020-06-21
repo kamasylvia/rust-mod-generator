@@ -14,15 +14,6 @@ export function activate(context: vscode.ExtensionContext) {
 	// Now provide the implementation of the command with registerCommand
 	// The commandId parameter must match the command field in package.json
 	vscode.commands.registerCommand('rust-mod-generator.showModuleNameDialog', showModuleNameDialog);
-
-	let disposable = vscode.commands.registerCommand('rust-mod-generator.helloWorld', () => {
-		// The code you place here will be executed every time your command is executed
-
-		// Display a message box to the user
-		vscode.window.showInformationMessage('Hello World from Rust Mod Generator!');
-	});
-
-	context.subscriptions.push(disposable);
 }
 
 
