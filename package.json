@@ -6,7 +6,7 @@
     "publisher": "ZhangYue",
     "license": "See LICENSE IN LICENSE.txt",
     "repository": "https://github.com/ZhangYue-vhyt/rust-mod-generator",
-    "icon": "images/logo.png",
+    "icon": "images/logo256.png",
     "version": "0.0.2",
     "engines": {
         "vscode": "^1.46.0"
@@ -19,6 +19,16 @@
     ],
     "main": "./out/extension.js",
     "contributes": {
+        "configuration": {
+            "title": "Rust Mod Generator",
+            "properties": {
+                "rust-mod-generator.autoJump": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Enable/disable auto jump to the new created module."
+                }
+            }
+        },
         "commands": [
             {
                 "command": "rust-mod-generator.showModuleNameDialog",
