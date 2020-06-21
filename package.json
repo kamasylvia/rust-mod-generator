@@ -5,6 +5,7 @@
     "author": "Zhang Yue",
     "publisher": "ZhangYue",
     "license": "See LICENSE IN LICENSE.txt",
+    "repository": "https://github.com/ZhangYue-vhyt/rust-mod-generator",
     "version": "0.0.1",
     "engines": {
         "vscode": "^1.46.0"
