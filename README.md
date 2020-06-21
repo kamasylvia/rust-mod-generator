@@ -21,11 +21,14 @@ Welcome to post any issue.
 
 ## Release Notes
 
-### 0.0.1 (Current version)
+### 0.0.1
 
 Initial release of Rust Mod Generator.
 
-### 0.0.2 (Next version)
+### 0.0.2 (Current version)
+- Add a logo.
+
+### 0.0.3 (Next version)
 
 Allow to select the access modifier.
 
