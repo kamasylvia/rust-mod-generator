@@ -13,7 +13,7 @@ export async function showModuleNameDialog(originUri: vscode.Uri) {
     let rootPath = path.dirname(uri.fsPath);
     let rootUri = vscode.Uri.file(rootPath);
 
-    vscode.window.showInputBox({ placeHolder: "<directory name> or <file name>.rs", prompt: "Enter the mod name. If the input ends with .rs, a single .rs file will be created, else a new subdirectory with mod.rs will be created.", value: "my_mod" }).then(async modName => {
+    vscode.window.showInputBox({ placeHolder: "<directory name> or <file name>.rs", prompt: "Enter the mod name. If the input ends with .rs, a single .rs file will be created, else a new subdirectory with mod.rs will be created.", value: "mod_name(.rs)" }).then(async modName => {
         if (!modName || !uri) {
             return;
         }

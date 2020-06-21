@@ -7,7 +7,7 @@ Use this extension to generate a rust mod quickly.
 ![image](images/RightClickDir.gif)
 ![image](images/RightClickRs.gif)
 
-### Create a rust module from the command. A `.rs` file has to be focus on.
+### Create a rust module from the command. A `.rs` file has to be focused on.
 
 ![image](images/Command.gif)
 
