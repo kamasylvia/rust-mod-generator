@@ -1,7 +1,7 @@
 {
     "name": "rust-mod-generator",
     "displayName": "Rust Mod Generator",
-    "description": "Create a mod with one hit.",
+    "description": "Create a mod quickly.",
     "version": "0.0.1",
     "engines": {
         "vscode": "^1.46.0"
