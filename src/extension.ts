@@ -31,7 +31,7 @@ export function activate(context: vscode.ExtensionContext) {
 			const allowAutoDeclare = vscode.workspace.getConfiguration("rust-mod-generator").get("addModDeclaration");
 			const allowSetModifier = vscode.workspace.getConfiguration("rust-mod-generator").get("selectAccessModifier");
 			if (allowSetModifier && allowAutoDeclare) {
-				modifier = await vscode.window.showQuickPick(["private(default)", "pub"], { placeHolder: "Select an access modifier for your module." }).
+				modifier = await vscode.window.showQuickPick(["private(default)", "pub"], { placeHolder: "Select access modifier." }).
 					then(modifier => modifier === "pub" ? "pub " : "");
 			}
 
