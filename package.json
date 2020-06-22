@@ -7,7 +7,7 @@
     "license": "See LICENSE IN LICENSE.txt",
     "repository": "https://github.com/ZhangYue-vhyt/rust-mod-generator",
     "icon": "images/logo256.png",
-    "version": "0.0.3",
+    "version": "1.0.0",
     "engines": {
         "vscode": "^1.46.0"
     },
@@ -30,12 +30,12 @@
                 "rust-mod-generator.selectAccessModifier": {
                     "type": "boolean",
                     "default": true,
-                    "description": "Enable to set the access modifier when creating a new module."
+                    "description": "Enable to set the access modifier when creating a new module. If this option is disable while 'rust-mod-generator.addModDeclaration' is enabled, the default access modifier (private) will be used."
                 },
                 "rust-mod-generator.addModDeclaration": {
                     "type": "boolean",
                     "default": true,
-                    "description": "Enable to auto add '<modifier> mod <mod_name>;' to the head of the resource file."
+                    "description": "Enable to prepend '<modifier> mod <mod_name>;' to the resource file. If this option is disabled, the option 'rust-mod-generator.selectAccessModifier' will be unavailable."
                 }
             }
         },

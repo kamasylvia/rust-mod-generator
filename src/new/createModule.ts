@@ -4,7 +4,7 @@ import * as path from "path";
 import { fileExists } from "../utils";
 
 
-export async function getModName(uri: vscode.Uri, rootUri: vscode.Uri): Promise<string | undefined> {
+export async function getModName(uri: vscode.Uri, rootUri: vscode.Uri) {
     return vscode.window.showInputBox({ placeHolder: "<directory name> or <file name>.rs", prompt: "Enter the mod name. If the input ends with .rs, a single .rs file will be created, else a new subdirectory with mod.rs will be created.", value: "mod_name(.rs)" }).then(async modName => {
         if (!modName) {
             return;
@@ -20,7 +20,7 @@ export async function getModName(uri: vscode.Uri, rootUri: vscode.Uri): Promise<
                 throw new Error(err);
             }
 
-            await createModule(modUri, false);
+            modUri = await createModule(modUri, false);
 
         } else {
             // Check if the mod already exists.
@@ -30,10 +30,10 @@ export async function getModName(uri: vscode.Uri, rootUri: vscode.Uri): Promise<
                 throw new Error(err);
             }
 
-            await createModule(modUri, true);
+            modUri = await createModule(modUri, true);
         }
 
-        return path.basename(modName, ".rs");
+        return { modName: path.basename(modName, ".rs"), modUri: modUri };
     });
 }
 
@@ -47,9 +47,5 @@ async function createModule(uri: vscode.Uri, isDir = false) {
     // Create the file.
     (await fs.promises.open(uri.fsPath, "w")).close();
 
-    // Focus on the new created file.
-    const autoFocus = vscode.workspace.getConfiguration("rust-mod-generator").get("autoFocus");
-    if (autoFocus) {
-        await vscode.workspace.openTextDocument(uri).then(doc => vscode.window.showTextDocument(doc));
-    }
+    return uri;
 }

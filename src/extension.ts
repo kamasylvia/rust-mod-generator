@@ -4,7 +4,7 @@ import * as vscode from 'vscode';
 import * as path from "path";
 import { getModName } from "./new/createModule";
 import { autoDeclare } from './declare/autoDeclare';
-import { fileExists } from "./utils";
+import { fileExists, focusOnFile } from "./utils";
 
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
@@ -21,21 +21,21 @@ export function activate(context: vscode.ExtensionContext) {
 			const rootPath = path.dirname(uri.fsPath);
 			const rootUri = vscode.Uri.file(rootPath);
 
-			const modName = await getModName(uri, rootUri);
-			if (!modName) {
+			const mod = await getModName(uri, rootUri);
+			if (!mod?.modName) {
 				return;
 			}
 
 			let modifier = "";
 
+			const allowAutoDeclare = vscode.workspace.getConfiguration("rust-mod-generator").get("addModDeclaration");
 			const allowSetModifier = vscode.workspace.getConfiguration("rust-mod-generator").get("selectAccessModifier");
-			if (allowSetModifier) {
+			if (allowSetModifier && allowAutoDeclare) {
 				modifier = await vscode.window.showQuickPick(["private(default)", "pub"], { placeHolder: "pub" }).
 					then(modifier => modifier === "pub" ? "pub " : "");
 			}
 
-			const allowAutooDeclare = vscode.workspace.getConfiguration("rust-mod-generator").get("addModDeclaration");
-			if (allowAutooDeclare) {
+			if (allowAutoDeclare) {
 				let resourceUri = uri;
 				const libUri = vscode.Uri.joinPath(rootUri, "lib.rs");
 				const modUri = vscode.Uri.joinPath(rootUri, "mod.rs");
@@ -50,8 +50,9 @@ export function activate(context: vscode.ExtensionContext) {
 				else if (await fileExists(libUri)) {
 					resourceUri = libUri;
 				}
-				await autoDeclare(resourceUri, modName, modifier);
+				await autoDeclare(resourceUri, mod.modName, modifier);
 			}
+			await focusOnFile(mod.modUri);
 		});
 }
 

@@ -5,12 +5,14 @@ All notable changes to the "rust-mod-generator" extension will be documented in 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 ## [Unreleased]
+
+## [1.0.0] - 2020-06-22
 ### Added
 - This changelog.
-- Allow to select the access modifier.
-- Add `<modifier> mod <mod_name>;` automatically to the head of the resource file.
+- Allow to select a access modifier.
+- Auto declare the new created module in a resource file, usually `./mod.rs`.
 - An extension setting `rust-mod-generator.addModDeclaration`.
-- Initial release
+- An extension setting `rust-mod-generator.selectAccessModifier`.
 
 ## [0.0.3] - 2020-06-21
 ### Added
@@ -23,4 +25,4 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## [0.0.1] - 2020-06-21
 ### Added
-- Initial release
+- Initial release.
