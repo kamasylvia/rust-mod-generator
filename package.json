@@ -35,6 +35,7 @@
                 "rust-mod-generator.addModDeclaration": {
                     "type": "boolean",
                     "default": true,
+
                     "description": "Enable to auto add '<modifier> mod <mod_name>;' to the head of the resource file."
                 }
             }
@@ -66,7 +67,7 @@
     "devDependencies": {
         "@types/glob": "^7.1.1",
         "@types/mocha": "^7.0.2",
-        "@types/node": "^13.11.0",
+        "@types/node": "^14.4.0",
         "@types/vscode": "^1.46.0",
         "@typescript-eslint/eslint-plugin": "^2.30.0",
         "@typescript-eslint/parser": "^2.30.0",

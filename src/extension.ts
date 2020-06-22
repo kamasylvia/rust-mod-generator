@@ -1,10 +1,10 @@
 // The module 'vscode' contains the VS Code extensibility API
 // Import the module and reference it with the alias vscode in your code below
 import * as vscode from 'vscode';
-import path = require('path');
+import * as path from "path";
 import { getModName } from "./new/createModule";
 import { autoDeclare } from './declare/autoDeclare';
-import * as fs from "fs";
+import { fileExists } from "./utils";
 
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
@@ -39,15 +39,15 @@ export function activate(context: vscode.ExtensionContext) {
 				let resourceUri = uri;
 				const libUri = vscode.Uri.joinPath(rootUri, "lib.rs");
 				const modUri = vscode.Uri.joinPath(rootUri, "mod.rs");
-				if (fs.existsSync(libUri.fsPath) && fs.existsSync(modUri.fsPath)) {
+				if (await fileExists(libUri) && await fileExists(modUri)) {
 					const err = `Both "lib.rs" and "mod.rs" are found. Please check your project structure.`;
 					vscode.window.showErrorMessage(err);
 					throw new Error(err);
 				}
-				if (fs.existsSync(modUri.fsPath)) {
+				else if (await fileExists(modUri)) {
 					resourceUri = modUri;
 				}
-				else if (fs.existsSync(libUri.fsPath)) {
+				else if (await fileExists(libUri)) {
 					resourceUri = libUri;
 				}
 				await autoDeclare(resourceUri, modName, modifier);

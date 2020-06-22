@@ -1,6 +1,7 @@
 import * as vscode from "vscode";
 import * as fs from "fs";
-import path = require("path");
+import * as path from "path";
+import { fileExists } from "../utils";
 
 
 export async function getModName(uri: vscode.Uri, rootUri: vscode.Uri): Promise<string | undefined> {
@@ -13,8 +14,7 @@ export async function getModName(uri: vscode.Uri, rootUri: vscode.Uri): Promise<
 
         if (modName.endsWith(".rs")) {
             // Check if the mod already exists.
-            if (fs.existsSync(modUri.fsPath) ||
-                fs.existsSync(vscode.Uri.joinPath(rootUri, path.basename(modName, ".rs")).fsPath)) {
+            if (await fileExists(modUri) || await fileExists(vscode.Uri.joinPath(rootUri, path.basename(modName, ".rs")))) {
                 const err = `The mod "${path.basename(modName, ".rs")}" already exists.`;
                 vscode.window.showErrorMessage(err);
                 throw new Error(err);
@@ -24,8 +24,7 @@ export async function getModName(uri: vscode.Uri, rootUri: vscode.Uri): Promise<
 
         } else {
             // Check if the mod already exists.
-            if (fs.existsSync(modUri.fsPath) ||
-                fs.existsSync(modUri.fsPath + ".rs")) {
+            if (await fileExists(modUri) || await fileExists(vscode.Uri.file(modUri.fsPath + ".rs"))) {
                 const err = `The mod "${modName}" already exists.`;
                 vscode.window.showErrorMessage(err);
                 throw new Error(err);
@@ -41,28 +40,12 @@ export async function getModName(uri: vscode.Uri, rootUri: vscode.Uri): Promise<
 async function createModule(uri: vscode.Uri, isDir = false) {
     if (isDir) {
         // Create the directory.
-        fs.mkdir(uri.fsPath, (err) => {
-            if (err) {
-                vscode.window.showErrorMessage(err.message);
-            }
-        });
+        fs.promises.mkdir(uri.fsPath);
         uri = vscode.Uri.joinPath(uri, "mod.rs");
     }
 
     // Create the file.
-    fs.open(uri.fsPath, "w", (err, fd) => {
-        if (err) {
-            vscode.window.showErrorMessage(err.message);
-            throw new Error(err.message);
-        }
-        fs.close(fd, (err) => {
-            if (err) {
-                vscode.window.showErrorMessage(err.message);
-                throw new Error(err.message);
-            }
-        });
-    });
-
+    (await fs.promises.open(uri.fsPath, "w")).close();
 
     // Focus on the new created file.
     const autoFocus = vscode.workspace.getConfiguration("rust-mod-generator").get("autoFocus");
