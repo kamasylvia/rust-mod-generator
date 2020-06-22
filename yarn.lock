@@ -793,6 +793,11 @@ inquirer@^7.0.0:
     strip-ansi "^6.0.0"
     through "^2.3.6"
 
+insert-line@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/insert-line/-/insert-line-1.1.0.tgz#6dcc0003505f009a2ba8e8ed6a4d42386439fd0f"
+  integrity sha1-bcwAA1BfAJorqOjtak1COGQ5/Q8=
+
 is-binary-path@~2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/is-binary-path/-/is-binary-path-2.1.0.tgz#ea1f7f3b80f064236e83470f86c09c254fb45b09"

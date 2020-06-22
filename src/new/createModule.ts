@@ -33,7 +33,7 @@ export async function getModName(uri: vscode.Uri, rootUri: vscode.Uri): Promise<
             await createModule(modUri, true);
         }
 
-        return modName;
+        return path.basename(modName, ".rs");
     });
 }
 

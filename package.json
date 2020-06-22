@@ -35,7 +35,6 @@
                 "rust-mod-generator.addModDeclaration": {
                     "type": "boolean",
                     "default": true,
-
                     "description": "Enable to auto add '<modifier> mod <mod_name>;' to the head of the resource file."
                 }
             }
@@ -77,5 +76,7 @@
         "typescript": "^3.8.3",
         "vscode-test": "^1.3.0"
     },
-    "dependencies": {}
+    "dependencies": {
+        "insert-line": "^1.1.0"
+    }
 }
