@@ -7,7 +7,7 @@
     "license": "MIT",
     "repository": "https://github.com/ZhangYue-vhyt/rust-mod-generator",
     "icon": "images/logo256.png",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "engines": {
         "vscode": "^1.46.0"
     },
