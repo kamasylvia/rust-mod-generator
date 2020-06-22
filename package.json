@@ -4,7 +4,7 @@
     "description": "Create a mod quickly.",
     "author": "Zhang Yue",
     "publisher": "ZhangYue",
-    "license": "See LICENSE IN LICENSE.txt",
+    "license": "MIT",
     "repository": "https://github.com/ZhangYue-vhyt/rust-mod-generator",
     "icon": "images/logo256.png",
     "version": "1.0.0",
