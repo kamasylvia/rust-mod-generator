@@ -6,6 +6,10 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## [Unreleased]
 
+## [1.0.2] - 2020-06-22
+### Changed
+- Error window.
+
 ## [1.0.1] - 2020-06-22
 ### Changed
 - The placeholder of the access modifier selection list.

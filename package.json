@@ -15,7 +15,8 @@
         "Programming Languages"
     ],
     "activationEvents": [
-        "onCommand:rust-mod-generator.showModuleNameDialog"
+        "onCommand:rust-mod-generator.createRustMod",
+        "onLanguage:rust"
     ],
     "main": "./out/extension.js",
     "contributes": {
@@ -41,7 +42,7 @@
         },
         "commands": [
             {
-                "command": "rust-mod-generator.showModuleNameDialog",
+                "command": "rust-mod-generator.createRustMod",
                 "title": "New a Rust module."
             }
         ],
@@ -50,7 +51,7 @@
                 {
                     "when": "resourceLangId == rust",
                     "group": "navigation",
-                    "command": "rust-mod-generator.showModuleNameDialog"
+                    "command": "rust-mod-generator.createRustMod"
                 }
             ]
         }
