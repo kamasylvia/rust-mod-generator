@@ -68,7 +68,7 @@ export async function getModName(uri: vscode.Uri, rootUri: vscode.Uri) {
 async function createModule(uri: vscode.Uri, isDir = false) {
     if (isDir) {
         // Create the directory.
-        fs.promises.mkdir(uri.fsPath);
+        fs.mkdirSync(uri.fsPath);
         uri = vscode.Uri.joinPath(uri, "mod.rs");
     }
 
