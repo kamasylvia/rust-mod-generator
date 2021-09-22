@@ -2,6 +2,7 @@
 // Import the module and reference it with the alias vscode in your code below
 import * as vscode from "vscode";
 import * as path from "path";
+import * as fs from "fs";
 import { getModName } from "./createModule";
 import { autoDeclare } from "./autoDeclare";
 import { fileExists, focusOnFile } from "./utils";
@@ -9,6 +10,9 @@ import { fileExists, focusOnFile } from "./utils";
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
 export function activate(context: vscode.ExtensionContext) {
+
+    vscode.commands.executeCommand('setContext', 'rust-mod-generator.customWhenClause', true);
+
     vscode.commands.registerCommand(
         "rust-mod-generator.createRustMod",
         async (originUri: vscode.Uri) => {
@@ -22,7 +26,9 @@ export function activate(context: vscode.ExtensionContext) {
                 throw new Error("");
             }
 
-            const rootPath = path.dirname(uri.fsPath);
+            const rootPath = (await fs.promises.lstat(uri.fsPath)).isDirectory()
+                ? uri.fsPath
+                : path.dirname(uri.fsPath);
             const rootUri = vscode.Uri.file(rootPath);
 
             const mod = await getModName(uri, rootUri);
@@ -67,4 +73,4 @@ export function activate(context: vscode.ExtensionContext) {
 }
 
 // this method is called when your extension is deactivated
-export function deactivate() {}
+export function deactivate() { }

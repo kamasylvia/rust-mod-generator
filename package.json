@@ -2,12 +2,12 @@
     "name": "rust-mod-generator",
     "displayName": "Rust Mod Generator",
     "description": "Create a mod quickly.",
-    "author": "Zhang Yue",
+    "author": "Kamasylvia",
     "publisher": "ZhangYue",
     "license": "MIT",
-    "repository": "https://github.com/ZhangYue-vhyt/rust-mod-generator",
+    "repository": "https://github.com/kamasylvia/rust-mod-generator",
     "icon": "images/logo256.png",
-    "version": "1.0.2",
+    "version": "1.0.4",
     "engines": {
         "vscode": "^1.46.0"
     },
@@ -16,7 +16,8 @@
     ],
     "activationEvents": [
         "onCommand:rust-mod-generator.createRustMod",
-        "onLanguage:rust"
+        "onLanguage:rust",
+        "workspaceContains:**/Cargo.toml"
     ],
     "main": "./out/extension.js",
     "contributes": {
@@ -50,6 +51,11 @@
             "explorer/context": [
                 {
                     "when": "resourceLangId == rust",
+                    "group": "navigation",
+                    "command": "rust-mod-generator.createRustMod"
+                },
+                {
+                    "when": "explorerResourceIsFolder && rust-mod-generator.customWhenClause",
                     "group": "navigation",
                     "command": "rust-mod-generator.createRustMod"
                 }

@@ -6,16 +6,29 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## [Unreleased]
 
+## [1.0.4] - 2021-09-22
+
+### Added
+
+- Only allow to create a mod from a folder/directory
+  which contains either a "mod.rs" or a "lib.rs".
+
 ## [1.0.2] - 2020-06-22
+
 ### Changed
+
 - Error window.
 
 ## [1.0.1] - 2020-06-22
+
 ### Changed
+
 - The placeholder of the access modifier selection list.
 
 ## [1.0.0] - 2020-06-22
+
 ### Added
+
 - This changelog.
 - Allow to select a access modifier.
 - Auto declare the new created module in a resource file, usually `./mod.rs`.
@@ -23,14 +36,19 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 - An extension setting `rust-mod-generator.selectAccessModifier`.
 
 ## [0.0.3] - 2020-06-21
+
 ### Added
+
 - An extension setting `rust-mod-generator.autoFocus`.
 
 ## [0.0.2] - 2020-06-21
+
 ### Added
+
 - A logo of this extension.
 
-
 ## [0.0.1] - 2020-06-21
+
 ### Added
+
 - Initial release.

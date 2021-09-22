@@ -12,3 +12,10 @@ export async function focusOnFile(uri: vscode.Uri) {
         .openTextDocument(uri)
         .then((doc) => vscode.window.showTextDocument(doc));
 }
+
+export async function updateCustomWhenClause(rootUri: vscode.Uri): Promise<void> {
+    vscode.commands.executeCommand('setContext', 'rust-mod-generator.customWhenClause',
+        await fileExists(vscode.Uri.joinPath(rootUri, "mod.rs"))
+        || await fileExists(vscode.Uri.joinPath(rootUri, "lib.rs"))
+    );
+}
