@@ -6,6 +6,12 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## [Unreleased]
 
+## [1.0.7] - 2021-09-23
+
+### Changed
+
+- When this extension is deactivated the disposables will be disposed.
+
 ## [1.0.6] - 2021-09-23
 
 ### Changed
