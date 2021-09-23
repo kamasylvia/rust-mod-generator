@@ -6,6 +6,18 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## [Unreleased]
 
+## [1.0.6] - 2021-09-23
+
+### Changed
+
+- The extension is enabled if and only if a Cargo.toml file was found under the workspace.
+
+## [1.0.5] - 2021-09-22
+
+### Changed
+
+- Fix sometimes created an empty directory when we expected to new a mod directory.
+
 ## [1.0.4] - 2021-09-22
 
 ### Added

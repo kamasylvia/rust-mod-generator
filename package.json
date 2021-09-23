@@ -16,7 +16,6 @@
     ],
     "activationEvents": [
         "onCommand:rust-mod-generator.createRustMod",
-        "onLanguage:rust",
         "workspaceContains:**/Cargo.toml"
     ],
     "main": "./out/extension.js",
