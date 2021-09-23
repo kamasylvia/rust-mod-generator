@@ -9,7 +9,7 @@ Use this extension to generate a rust mod quickly.
 ![image](images/MenuFile.gif)
 ![image](images/MenuDir.gif)
 
-_Note_: The folder/directory has to contain either a "mod.rs" or a "lib.rs" file, and the workspace has to contain a Cargo.toml file.
+_Note_: The target folder/directory has to contain either a "mod.rs" or a "lib.rs" file, and the workspace has to contain a Cargo.toml file.
 
 ### Create a rust module from the command.
 
