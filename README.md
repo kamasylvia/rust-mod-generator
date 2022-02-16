@@ -28,6 +28,7 @@ This extension contributes the following settings:
 - `rust-mod-generator.autoFocus`: Enable to auto focus on the new created module.
 - `rust-mod-generator.selectAccessModifier`: Enable to set the access modifier when creating a new module.
 - `rust-mod-generator.addModDeclaration`: Enable to prepend `<modifier> mod <mod_name>;` to a resource file.
+- `rust-mod-generator.enableFileMenuItem`: Enable to show the context menu item on Rust files in addition to folders.
 
 ## Known Issues
 Welcome to post any issue.

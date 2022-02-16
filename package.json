@@ -37,6 +37,11 @@
                     "type": "boolean",
                     "default": true,
                     "description": "Enable to prepend '<modifier> mod <mod_name>;' to the resource file. If this option is disabled, the option 'rust-mod-generator.selectAccessModifier' will be unavailable."
+                },
+                "rust-mod-generator.enableFileMenuItem": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Enable to show the context menu item on Rust files in addition to folders."
                 }
             }
         },
@@ -49,7 +54,7 @@
         "menus": {
             "explorer/context": [
                 {
-                    "when": "resourceLangId == rust",
+                    "when": "resourceLangId == rust && config.rust-mod-generator.enableFileMenuItem",
                     "group": "navigation",
                     "command": "rust-mod-generator.createRustMod"
                 },
