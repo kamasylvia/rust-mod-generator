@@ -55,7 +55,7 @@
                 },
                 {
                     "when": "explorerResourceIsFolder && rust-mod-generator.customWhenClause",
-                    "group": "navigation",
+                    "group": "navigation@10",
                     "command": "rust-mod-generator.createRustMod"
                 }
             ]
