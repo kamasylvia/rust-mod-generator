@@ -43,7 +43,7 @@
         "commands": [
             {
                 "command": "rust-mod-generator.createRustMod",
-                "title": "New a Rust module."
+                "title": "New Rust module"
             }
         ],
         "menus": {
