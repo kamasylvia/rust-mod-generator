@@ -18,9 +18,10 @@ export async function getModName(uri: vscode.Uri, rootUri: vscode.Uri) {
 
             if (
                 !await fileExists(vscode.Uri.joinPath(rootUri, "mod.rs"))
+                && !await fileExists(vscode.Uri.joinPath(rootUri, "main.rs"))
                 && !await fileExists(vscode.Uri.joinPath(rootUri, "lib.rs"))
             ) {
-                const err = `The directory "${rootUri.fsPath}" does not contain either a "mod.rs" or "lib.rs".`;
+                const err = `The directory "${rootUri.fsPath}" does not contain either a "main.rs", "mod.rs" or "lib.rs".`;
                 vscode.window.showErrorMessage(err);
                 throw new Error("");
             }

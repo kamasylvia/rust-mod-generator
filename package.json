@@ -2,7 +2,7 @@
     "name": "rust-mod-generator",
     "displayName": "Rust Mod Generator",
     "description": "Create a mod quickly.",
-    "author": "Kamasylvia",
+    "author": "Kamasylvia, André Claudino",
     "publisher": "ZhangYue",
     "license": "MIT",
     "repository": "https://github.com/kamasylvia/rust-mod-generator",
