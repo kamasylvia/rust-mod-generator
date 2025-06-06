@@ -6,6 +6,35 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## [Unreleased]
 
+## [1.0.11] - 2025-06-06
+
+### Added
+
+Allow creating module in root, where just a `main.rs` exists.
+
+## [1.0.10] - 2022-02-17
+
+### Changed
+
+Use standard command title naming convention
+Move menu item below "New Folder".
+
+### Added
+
+Add setting to hide menu item on files
+
+## [1.0.9] - 2021-09-23
+
+### Changed
+
+Remove prefilled value of `ShowInputBox`.
+
+## [1.0.8] - 2021-09-23
+
+### Changed
+
+Update package.json
+
 ## [1.0.7] - 2021-09-23
 
 ### Changed
