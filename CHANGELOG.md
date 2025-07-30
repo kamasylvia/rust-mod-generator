@@ -6,6 +6,12 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## [Unreleased]
 
+## [1.0.12] - 2025-07-30
+
+### Added
+
+Fix #11 and #17.
+
 ## [1.0.11] - 2025-06-06
 
 ### Added
